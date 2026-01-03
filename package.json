@@ -1,5 +1,5 @@
 {
-  "name": "nest_microservice2",
+  "name": "nest_microservices",
   "private": true,
   "scripts": {
     "build": "turbo run build",
@@ -23,6 +23,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "@nestjs/microservices": "^10.4.17"
+    "@nestjs/microservices": "^10.4.17",
+    "ioredis": "^5.8.2"
   }
 }
