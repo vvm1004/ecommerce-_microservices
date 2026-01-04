@@ -1,5 +1,5 @@
 {
-  "name": "@org/api-gateway",
+  "name": "@org/products",
   "version": "0.0.1",
   "private": true,
   "nx": {
@@ -11,7 +11,7 @@
           "args": [
             "--node-env=production"
           ],
-          "cwd": "apps/api-gateway"
+          "cwd": "apps/products"
         },
         "configurations": {
           "development": {
@@ -28,8 +28,8 @@
         "cache": true,
         "executor": "@nx/js:prune-lockfile",
         "outputs": [
-          "{workspaceRoot}/apps/api-gateway/dist/package.json",
-          "{workspaceRoot}/apps/api-gateway/dist/package-lock.json"
+          "{workspaceRoot}/apps/products/dist/package.json",
+          "{workspaceRoot}/apps/products/dist/package-lock.json"
         ],
         "options": {
           "buildTarget": "build"
@@ -41,7 +41,7 @@
         ],
         "cache": true,
         "outputs": [
-          "{workspaceRoot}/apps/api-gateway/dist/workspace_modules"
+          "{workspaceRoot}/apps/products/dist/workspace_modules"
         ],
         "executor": "@nx/js:copy-workspace-modules",
         "options": {
@@ -63,15 +63,15 @@
           "build"
         ],
         "options": {
-          "buildTarget": "@org/api-gateway:build",
+          "buildTarget": "@org/products:build",
           "runBuildTargetDependencies": false
         },
         "configurations": {
           "development": {
-            "buildTarget": "@org/api-gateway:build:development"
+            "buildTarget": "@org/products:build:development"
           },
           "production": {
-            "buildTarget": "@org/api-gateway:build:production"
+            "buildTarget": "@org/products:build:production"
           }
         }
       },
