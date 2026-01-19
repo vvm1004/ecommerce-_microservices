@@ -6,7 +6,9 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
+import { join } from 'path';
 import { AppModule } from './app/app.module';
+import { PRODUCTS_PACKAGE_NAME } from '../../../types/proto/products';
 
 async function bootstrap() {
   const tcpMicroservice =
@@ -24,7 +26,21 @@ async function bootstrap() {
         port: 6379,
       },
     });
-  await Promise.all([tcpMicroservice.listen(), redisMicroservice.listen()]);
+
+  const grpcMicroservice =
+    await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
+      transport: Transport.GRPC,
+      options: {
+        package: PRODUCTS_PACKAGE_NAME,
+        protoPath: join(__dirname, 'proto/products.proto'),
+      },
+    });
+
+  await Promise.all([
+    //tcpMicroservice.listen(),
+    redisMicroservice.listen(),
+    grpcMicroservice.listen(),
+  ]);
   // await app.listen();
   Logger.log(
     'Product Microservice is running on port 4002, listen to redis events'

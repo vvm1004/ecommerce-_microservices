@@ -60,9 +60,15 @@
     }
   ],
   "nxCloudId": "695a97942b628f2e884637da",
-  "targetDefaults": {
-    "test": {
-      "dependsOn": ["^build"]
+ "targetDefaults": {
+    "build": {
+      "options": {
+        "assets":[{
+          "glob":"*.proto",
+          "input":"proto",
+          "output":"proto"
+        }]
+      }
     }
   }
 }
